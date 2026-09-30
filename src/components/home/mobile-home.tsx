@@ -74,7 +74,7 @@ export function MobileHome() {
               <ArrowRight size={17} aria-hidden="true" />
             </a>
           </div>
-          <figure className="studio-hero-phone">
+          <figure className="studio-hero-phone" data-reveal>
             <PhoneMockup
               src="/assets/app-screens/home.png"
               alt="Actual Revenge Arc home interface showing example progress, goals, and a weekly report"
@@ -107,7 +107,7 @@ export function MobileHome() {
         aria-labelledby="buddy-heading"
       >
         <div className="content-shell studio-reading buddy-grid">
-          <div className="buddy-art">
+          <div className="buddy-art" data-buddy-motion>
             <Image
               src="/assets/brand/buddy-open.webp"
               alt="GymBuddy, Revenge Arc’s friendly AI companion"
@@ -115,10 +115,11 @@ export function MobileHome() {
               height={1610}
               unoptimized
               loading="lazy"
+              className="buddy-avatar"
             />
-            <span>Hey. Ready for your next small win?</span>
+            <span className="buddy-greeting" data-reveal>Hey. Ready for your next small win?</span>
           </div>
-          <div>
+          <div data-reveal>
             <p className="utility-text text-xs text-violet-300">
               Meet GymBuddy
             </p>
@@ -185,7 +186,7 @@ export function MobileHome() {
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
-          <figure className="community-proof-phone">
+          <figure className="community-proof-phone" data-reveal>
             <PhoneMockup
               src="/assets/app-screens/connect.png"
               alt="Revenge Arc Arena interface with illustrative community posts"
@@ -229,7 +230,7 @@ export function MobileHome() {
             <span className="text-zinc-400">Clear boundaries.</span>
           </h2>
           <div className="trust-grid">
-            <article>
+            <article data-reveal>
               <ShieldCheck size={25} aria-hidden="true" />
               <h3>Your records. Your choice.</h3>
               <p>
@@ -242,7 +243,7 @@ export function MobileHome() {
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </article>
-            <article>
+            <article data-reveal>
               <Sparkle size={25} aria-hidden="true" />
               <h3>AI helps. You decide.</h3>
               <p>
@@ -254,7 +255,7 @@ export function MobileHome() {
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </article>
-            <article>
+            <article data-reveal>
               <UsersThree size={25} aria-hidden="true" />
               <h3>Arena has safety controls.</h3>
               <p>
