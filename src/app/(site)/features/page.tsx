@@ -102,6 +102,7 @@ export default function FeaturesPage() {
                 id={chapters[index].id}
                 key={title}
                 className="feature-visual-card"
+                data-reveal
                 aria-labelledby={`feature-${title}`}
               >
                 <div>

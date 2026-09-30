@@ -14,6 +14,14 @@ Contact email must remain unchanged. Seven-day free trial confirmed by owner; in
 
 Verification: mobile 360/390/430, tablet 768, desktop 1440; keyboard/touch alternatives, menu/gallery focus restoration, no horizontal overflow, ordinary scrolling, contrast, short creator validation, pricing arithmetic, launch states, tests/typecheck/lint/production build. Physical-device and TikTok-browser checks remain separate.
 
+### September 29 restrained motion direction
+
+Owner approved all three motion directions: premium micro-interactions, animated product demonstrations, and GymBuddy personality. Preserve the six-color void/ivory/violet/cyan/amber/muted palette, Inter/Barlow Condensed/Space Mono typography, and current mobile-first layout.
+
+Signature: GymBuddy gets two gentle breathing cycles, totalling less than five seconds, only while its section is visible. Supporting motion is a single logo highlight, once-only section/feature-card entrances, native FAQ answer entrances, and small press feedback. Keep Apple badge artwork and the launch/download area static and immediately available.
+
+The existing user-controlled demo gains a short phone-screen crossfade, animated set-completion checks, a once-on-entry example weekly chart, and a brief clearly illustrative GymBuddy typing/reply sequence. No live AI request, automatic slide changes, new animation dependency, scroll hijacking, or fabricated user outcomes. Animation uses transforms/opacity; static content remains visible without JavaScript. Reduced Motion and supported Save Data preferences disable decorative movement. Offscreen/hidden-tab character motion pauses; observers, timers, and preference listeners are cleaned up.
+
 ### Published verification
 
 Published September 29, 2026 (New York), using the complete, verified Netlify preview deployment `6abc64caef5f4d67b193403e`. The canonical domain is https://www.revengearc.com/.

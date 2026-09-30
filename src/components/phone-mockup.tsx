@@ -1,15 +1,18 @@
 import { ScreenPreviewButton } from "./screen-gallery";
+import type { ReactNode } from "react";
 
 export function PhoneMockup({
   src,
   alt,
   priority = false,
   className = "",
+  children,
 }: {
   src: string;
   alt: string;
   priority?: boolean;
   className?: string;
+  children?: ReactNode;
 }) {
   const stem = src.replace(/\.png$/, "");
   return (
@@ -17,6 +20,7 @@ export function PhoneMockup({
       {/* Pre-generated responsive assets keep app previews independent of the image optimizer. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={`${stem}-640.webp`} srcSet={`${stem}-360.webp 360w, ${stem}-640.webp 640w, ${stem}-853.webp 853w`} sizes="(max-width: 767px) 70vw, (max-width: 1023px) 40vw, 420px" alt={alt} width={853} height={1844} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+      {children}
       <span aria-hidden="true" className="absolute left-1/2 top-2 z-10 h-[1.25rem] w-[32%] -translate-x-1/2 rounded-full bg-black shadow-[0_1px_0_rgba(255,255,255,.09)] sm:top-3 sm:h-[1.55rem]" />
       <span aria-hidden="true" className="absolute inset-y-[6%] left-0 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent" />
       <ScreenPreviewButton src={src} />
