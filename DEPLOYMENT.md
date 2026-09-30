@@ -13,7 +13,18 @@ Authorized repository only: `revangearc/RevengeNewwebsite`. Keep the existing Ne
 5. Verify a Git-triggered production deployment records the uploaded commit SHA, passes checks, and serves the existing HTTPS domain, pages, images, redirects, creator API, and admin login safely.
 6. Make a small documentation-only push and verify that a second deployment starts automatically. This proves the push trigger, not just a one-time manual deploy.
 
-Connection/push verification must be completed before describing auto-deployment as active. No GoDaddy DNS change is needed for this connection.
+The connection and automatic push trigger were verified on September 29, 2026. No GoDaddy DNS changes were made for this connection.
+
+### Verified Git deployment
+
+- Source repository: https://github.com/revangearc/RevengeNewwebsite
+- Production branch: `main`; all existing domain and production environment settings were retained.
+- First successful automatic production deployment: `6abc708affe14300085655b2`, from commit `d559973f403ba7cc1f10cba489e9376287e4c224`.
+- Deployment details: https://app.netlify.com/projects/revenge-arc-app/deploys/6abc708affe14300085655b2
+- GitHub Actions and Netlify passed the publication guard, lint, TypeScript checks, all 28 tests, and the production build. Netlify also completed its Next.js adapter and published the deployment.
+- An initial Netlify secret-scan warning came from a login-schema test fixture. It was replaced with fictional test data and added to the repository's publication checks. Netlify's secret scanning remains enabled; no secret-scan exclusions were added.
+
+For routine updates, commit and push to `main` (or merge a reviewed pull request into `main`), then confirm the matching commit is published in Netlify. Deployment takes time to build; a push is not an instant publication. If a check fails, fix the reported issue while the last successful release remains live.
 
 ## Required production environment variables
 

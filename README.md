@@ -110,8 +110,8 @@ This runs a focused credential/publication guard, linting, TypeScript checks, un
 
 ## Automatic deployment
 
-Connect this repository's `main` branch to the existing Netlify project. Netlify reads `netlify.toml`, runs `npm run check`, then packages the Next.js site with its adapter. A failed check/build must not replace the last successful deployment. GitHub Actions also checks pushes to `main` and pull requests, without production secrets.
+This repository's `main` branch is connected to the existing Netlify project `revenge-arc-app`. Netlify reads `netlify.toml`, runs `npm run check`, then packages the Next.js site with its adapter. A failed check/build does not replace the last successful deployment. GitHub Actions also checks pushes to `main` and pull requests, without production secrets.
 
-Once the connection is verified, commits pushed or merged to `main` update https://www.revengearc.com/ after a successful Netlify build. Other branches do not directly change production. Local edits must be committed and pushed before they can deploy. See [DEPLOYMENT.md](DEPLOYMENT.md) for connection and verification steps.
+Automatic deployment was verified on September 29, 2026: a push to `main` started and published a production deployment without a manual upload. Commits pushed or merged to `main` update https://www.revengearc.com/ after a successful Netlify build. Other branches do not directly change production. Local edits must be committed and pushed before they can deploy. See [DEPLOYMENT.md](DEPLOYMENT.md) for configuration and verification records.
 
 Do not change GoDaddy DNS, create another hosting project, or upload `.next` manually for routine updates. The approved App Store URL remains a future environment-setting change followed by a rebuild.
