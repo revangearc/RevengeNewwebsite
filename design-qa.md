@@ -1,4 +1,13 @@
-# Design QA — Option 4 implementation
+# Restrained motion QA — September 29, 2026
+
+- Preserved the approved mobile-first layout, brand palette, typography, real screen assets, contact details, trial wording, and App Store launch state.
+- Browser previews at actual 390×844 and 1280×720 dimensions showed no document-level horizontal overflow. Checked the static launch area, product tabs and step changes, illustrative GymBuddy reply, progress chart, character section, native FAQ opening, gallery controls, and focus restoration. Browser console had no warnings/errors during the inspected development interactions.
+- Observed the character paused offscreen and active in its visible section, with a finite two-cycle / 4.8-second CSS animation. The chart fill and FAQ entrance styles applied, while the hero launch area had no animation and remained fully visible.
+- `npm run check` passed: publication guard, lint, TypeScript, 39 tests across ten files, and the production build. New regressions cover shared preference listeners, Reduce Motion/Save Data changes, observer cleanup, hidden/offscreen character behavior, crossfade control isolation, short AI-example timers, and immediate reduced-motion replies.
+- No continuous scroll subscriptions, autoplay slides, real AI calls, new animation dependency, or real creator test application was added. Content is visible before animation enhancement; keyboard/tab and gallery behavior stay user-controlled.
+- The browser viewport control did not reliably resize background preview tabs; only the actual measured dimensions above are claimed for this pass. Physical iPhone Safari, Android Chrome, and TikTok's in-app browser remain unverified.
+
+## Earlier Option 4 implementation — historical
 
 Reference: `design-exploration/mockups-round-7-true-size-stacked/04-cinematic-split-chapters.png` in the V1 design archive.
 
