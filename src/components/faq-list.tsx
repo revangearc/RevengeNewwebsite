@@ -11,7 +11,7 @@ export function FaqList({
   items?: FaqItem[];
 }) {
   return (
-    <div className="divide-y divide-white/10 border-y border-white/10">
+    <div className="faq-list divide-y divide-white/10 border-y border-white/10">
       {items.slice(0, limit).map((faq) => (
         <details key={faq.question} className="group">
           <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 py-4 text-left text-base font-semibold text-white marker:content-none sm:text-lg">
@@ -22,7 +22,7 @@ export function FaqList({
               aria-hidden="true"
             />
           </summary>
-          <div className="max-w-3xl pb-6 text-sm leading-7 text-zinc-300 sm:text-base">
+          <div className="faq-answer max-w-3xl pb-6 text-sm leading-7 text-zinc-300 sm:text-base">
             <p>{faq.answer}</p>
             {faq.href && (
               <Link href={faq.href} className="studio-text-link">

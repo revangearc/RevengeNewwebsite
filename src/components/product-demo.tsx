@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import {
   ArrowRight,
   Barbell,
@@ -10,6 +10,7 @@ import {
   Check,
 } from "@phosphor-icons/react";
 import { PhoneMockup } from "./phone-mockup";
+import { useLightMotion } from "@/hooks/use-light-motion";
 
 const moments = [
   {
@@ -89,8 +90,16 @@ const moments = [
 export function ProductDemo() {
   const [active, setActive] = useState(0);
   const [step, setStep] = useState(0);
+  const [previousScreen, setPreviousScreen] = useState<string | null>(null);
   const moment = moments[active];
+  useEffect(() => {
+    if (!previousScreen) return;
+    // Cleanup still works when reduced motion disables the animation event.
+    const timer = window.setTimeout(() => setPreviousScreen(null), 360);
+    return () => window.clearTimeout(timer);
+  }, [previousScreen, active]);
   function choose(next: number) {
+    if (next !== active) setPreviousScreen(moment.screen);
     setActive(next);
     setStep(0);
   }
@@ -165,7 +174,7 @@ export function ProductDemo() {
                 </li>
               ))}
             </ol>
-            <div className="demo-example" aria-live="polite" aria-atomic="true">
+            <div className="demo-example" data-reveal aria-live="polite" aria-atomic="true">
               <p className="utility-text text-[.6rem] text-cyan-300">
                 Interactive example · {step + 1} of 3
               </p>
@@ -188,10 +197,24 @@ export function ProductDemo() {
           </div>
           <figure className="demo-phone">
             <PhoneMockup
-              key={moment.screen}
               src={`/assets/app-screens/${moment.screen}.png`}
               alt={`Actual Revenge Arc ${moment.label} interface. Displayed records are example data.`}
-            />
+            >
+              {previousScreen && (
+                /* Decorative old pixels only: no duplicate focusable gallery control. */
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  key={`${previousScreen}-${moment.screen}`}
+                  src={`/assets/app-screens/${previousScreen}-640.webp`}
+                  alt=""
+                  aria-hidden="true"
+                  width={853}
+                  height={1844}
+                  className="demo-screen-outgoing"
+                  onAnimationEnd={() => setPreviousScreen(null)}
+                />
+              )}
+            </PhoneMockup>
             <figcaption>App preview · example records</figcaption>
           </figure>
         </div>
@@ -207,7 +230,10 @@ function DemoVisual({ moment, step }: { moment: number; step: number }) {
         {[1, 2, 3].map((set) => (
           <span key={set} className={set <= step ? "is-logged" : ""}>
             Set {set}
-            <strong>{set <= step ? "Logged ✓" : "Ready"}</strong>
+            <strong>
+              {set <= step && <Check className="demo-set-check" size={14} weight="bold" aria-hidden="true" />}
+              {set <= step ? "Logged" : "Ready"}
+            </strong>
           </span>
         ))}
       </div>
@@ -229,24 +255,53 @@ function DemoVisual({ moment, step }: { moment: number; step: number }) {
     return (
       <div className="demo-mini-chat" aria-hidden="true">
         <span>You asked</span>
-        <span>
-          {step === 0
-            ? "Context ready"
-            : step === 1
-              ? "Suggestion to review"
-              : "Your next step"}
-          <Sparkle size={17} />
-        </span>
+        {step === 1 ? <BuddyReply key="example-reply" /> : (
+          <span className="demo-buddy-reply">
+            {step === 0 ? "Context ready" : "Your next step"}
+            <Sparkle size={17} />
+          </span>
+        )}
+        <small>Illustrative conversation · not live AI</small>
       </div>
     );
   return (
-    <div className="demo-mini-progress" aria-hidden="true">
-      {[35, 50, 44, 68, 60, 78, 86].map((height, index) => (
-        <span
-          key={index}
-          style={{ height: `${height}%`, opacity: index <= step * 3 ? 1 : 0.3 }}
-        />
-      ))}
+    <div aria-hidden="true">
+      <div className="demo-mini-progress">
+        {[35, 50, 44, 68, 60, 78, 86].map((height, index) => (
+          <span
+            key={index}
+            style={{
+              height: `${height}%`,
+              opacity: index <= step * 3 ? 1 : 0.3,
+              "--bar-delay": `${index * 45}ms`,
+            } as CSSProperties}
+          />
+        ))}
+      </div>
+      <p className="demo-chart-caption">Example week · activity, not a health score</p>
     </div>
+  );
+}
+
+function BuddyReply() {
+  const allowed = useLightMotion();
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (!allowed) return;
+    const timer = window.setTimeout(() => setReady(true), 650);
+    return () => window.clearTimeout(timer);
+  }, [allowed]);
+  const typing = allowed && !ready;
+  return (
+    <span className="demo-buddy-reply" key={typing ? "typing" : "reply"}>
+      {typing ? (
+        <>
+          <span className="buddy-typing-dots"><i /><i /><i /></span>
+          <span className="screen-reader-only">Example reply appearing</span>
+        </>
+      ) : (
+        <>Find a session that fits your routine.<Sparkle size={17} /></>
+      )}
+    </span>
   );
 }
