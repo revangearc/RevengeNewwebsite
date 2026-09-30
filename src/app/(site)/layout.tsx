@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { DownloadBar } from "@/components/download-bar";
 import { APP_STORE_URL } from "@/content/site";
+import { SiteMotion } from "@/components/site-motion";
 
 export default function SiteLayout({
   children,
@@ -22,6 +23,7 @@ export default function SiteLayout({
       <SiteFooter />
       <DownloadBar />
       <AnalyticsObserver />
+      <SiteMotion />
     </>
   );
 }
