@@ -106,10 +106,10 @@ describe("analyticsEventSchema", () => {
 describe("adminLoginSchema", () => {
   it("normalizes a valid username", () => {
     const result = adminLoginSchema.parse({
-      username: "  Bashar1212  ",
+      username: "  FixtureOwner42  ",
       password: "long-enough-password",
     });
-    expect(result.username).toBe("bashar1212");
+    expect(result.username).toBe("fixtureowner42");
   });
 
   it("rejects email-shaped and malformed usernames", () => {
